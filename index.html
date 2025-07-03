@@ -1,96 +1,347 @@
 <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سيرة ذاتية احترافية | اسمك هنا</title>
 
-        <!--========== BOX ICONS ==========-->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <!-- ICONS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 
-        <!--========== CSS ==========-->
-        <link rel="stylesheet" href="assets/css/styles.css">
-
-        <title>Responsive resume cv</title>
-    </head>
-    <body>
-        <!--========== HEADER ==========-->
-        <header class="l-header" id="header">
-            
-        </header>
-
-        <main class="l-main bd-container">
-            <!-- All elements within this div, is generated in PDF -->
-            <div class="resume" id="area-cv">
-                <div class="resume__left">
-                    <!--========== HOME ==========-->
-                    <section class="home" id="home">
-                        
-                        <!-- Theme change button -->
-                        
-    
-                        <!-- Button to generate and download the pdf. Available for desktop. -->
-
-                    </section>          
-                    
-                    <!--========== SOCIAL ==========-->
-                    <section class="social section">
-                        
-                    </section>
-
-                    <!--========== PROFILE ==========-->
-                    <section class="profile section" id="profile">
-                        
-                    </section>
-                    
-                    <!--========== EDUCATION ==========-->
-                    <section class="education section" id="education">
-                        
-                    </section>
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
 
 
-                    <!--========== SKILLS  ==========-->
-                    <section class="skills section" id="skills">
-                        
-                    </section>
+    <!-- INTERNAL CSS -->
+    <style>
+        /* CSS VARIABLES */
+        :root {
+            --primary-color: #0e244d;
+            --secondary-color: #4a5568;
+            --background-color: #f7fafc;
+            --container-bg-color: #ffffff;
+            --text-color: #2d3748;
+            --border-color: #e2e8f0;
+            --accent-color: #2b6cb0;
+        }
 
-                </div>
+        /* BASE STYLES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-                <div class="resume__right">
-                    <!--========== EXPERIENCE ==========-->
-                    <section class="experience section" id="experience">
-                        
-                    </section>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
 
-                    <!--========== CERTIFICATES ==========-->
-                    <section class="certificate section" id="certificates">
-                        
-                    </section>
-
-                    <!--========== REFERENCES ==========-->
-                    <section class="references section" id="references">
-                        
-                    </section>
-
-                    <!--========== LANGUAGES ==========-->
-                    <section class="languages section">
-                        
-                    </section>
-                    
-                    <!--========== INTERESTS ==========-->
-                    <section class="interests section">
-                        
-                    </section>
-                </div>
-            </div>        
-        </main>
-
-        <!--========== SCROLL TOP ==========-->
+        h1, h2, h3 {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
         
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        h2 {
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent-color);
+            display: flex;
+            align-items: center;
+        }
+        
+        h2 i {
+            margin-left: 0.75rem; /* For RTL support, margin-left pushes the icon to the right */
+            font-size: 1.8rem;
+        }
+        
+        h3 {
+            font-size: 1.1rem;
+            color: var(--accent-color);
+            margin-bottom: 0.25rem;
+        }
 
-        <!--========== HTML2PDF ==========-->
-        <script src="assets/js/html2pdf.bundle.min.js"></script>
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
 
-        <!--========== MAIN JS ==========-->
-        <script src="assets/js/main.js"></script>
-    </body>
+        a:hover {
+            color: var(--primary-color);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* LAYOUT */
+        .resume-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            background-color: var(--container-bg-color);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            display: flex;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .resume-left, .resume-right {
+            padding: 2.5rem;
+        }
+
+        .resume-left {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            flex: 1;
+        }
+
+        .resume-left h2, .resume-left h3 {
+            color: #ffffff;
+        }
+        .resume-left h2 {
+            border-bottom-color: #ffffff;
+        }
+        
+        .resume-left a {
+             color: #a7c5ff;
+        }
+        .resume-left a:hover {
+             color: #ffffff;
+        }
+
+
+        .resume-right {
+            flex: 2;
+        }
+
+        /* HEADER SECTION */
+        .profile-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .profile-header h1 {
+            margin-bottom: 0.25rem;
+        }
+        .profile-header .job-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+        
+        /* LEFT COLUMN COMPONENTS */
+        .contact-info li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+        .contact-info li i {
+            font-size: 1.2rem;
+            margin-left: 0.75rem; /* for RTL */
+            width: 20px;
+        }
+
+        .section {
+            margin-bottom: 2rem;
+        }
+        .section:last-child {
+             margin-bottom: 0;
+        }
+
+        .skills-list .skill-item {
+            margin-bottom: 0.75rem;
+        }
+        .skill-bar {
+            background-color: var(--secondary-color);
+            border-radius: 5px;
+            height: 10px;
+            overflow: hidden;
+        }
+        .skill-level {
+            background-color: #ffffff;
+            height: 100%;
+            border-radius: 5px;
+        }
+        
+        .education-item {
+            margin-bottom: 1rem;
+        }
+         .education-item p {
+            font-weight: 600;
+            color: #e0e0e0;
+            margin: 0;
+        }
+
+
+        /* RIGHT COLUMN COMPONENTS */
+        .experience-item, .certificate-item {
+            margin-bottom: 1.5rem;
+        }
+        
+        .experience-item .company {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .experience-item ul li {
+            position: relative;
+            padding-right: 1.5rem; /* for RTL */
+            margin-bottom: 0.5rem;
+        }
+        .experience-item ul li::before {
+            content: '•';
+            position: absolute;
+            right: 0;
+            top: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            .resume-container {
+                flex-direction: column;
+                margin: 1rem;
+            }
+
+            .resume-left, .resume-right {
+                padding: 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            h2 {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="resume-container">
+        <!-- Left Column -->
+        <aside class="resume-left">
+            <section class="section">
+                <h2><i class='bx bx-user'></i>التواصل</h2>
+                <ul class="contact-info">
+                    <li><i class='bx bxs-phone'></i><a href="tel:+123456789">+966 50 123 4567</a></li>
+                    <li><i class='bx bxs-envelope'></i><a href="mailto:email@example.com">email@example.com</a></li>
+                    <li><i class='bx bxs-map'></i><span>الرياض, المملكة العربية السعودية</span></li>
+                    <li><i class='bx bxl-linkedin-square'></i><a href="#">linkedin.com/in/username</a></li>
+                </ul>
+            </section>
+
+            <section class="section">
+                <h2><i class='bx bx-bolt-circle'></i>المهارات</h2>
+                <ul class="skills-list">
+                    <li class="skill-item">
+                        <p>HTML & CSS</p>
+                        <div class="skill-bar"><div class="skill-level" style="width: 95%;"></div></div>
+                    </li>
+                    <li class="skill-item">
+                        <p>JavaScript (React, Node.js)</p>
+                        <div class="skill-bar"><div class="skill-level" style="width: 85%;"></div></div>
+                    </li>
+                    <li class="skill-item">
+                        <p>Python (Django, Flask)</p>
+                        <div class="skill-bar"><div class="skill-level" style="width: 80%;"></div></div>
+                    </li>
+                    <li class="skill-item">
+                        <p>قواعد البيانات (SQL, MongoDB)</p>
+                        <div class="skill-bar"><div class="skill-level" style="width: 90%;"></div></div>
+                    </li>
+                    <li class="skill-item">
+                        <p>حل المشكلات</p>
+                        <div class="skill-bar"><div class="skill-level" style="width: 95%;"></div></div>
+                    </li>
+                </ul>
+            </section>
+            
+            <section class="section">
+                <h2><i class='bx bxs-graduation'></i>التعليم</h2>
+                <div class="education-item">
+                    <h3>بكالوريوس في علوم الحاسب</h3>
+                    <p>جامعة الملك سعود | 2018 - 2022</p>
+                </div>
+                 <div class="education-item">
+                    <h3>شهادة الثانوية العامة</h3>
+                    <p>مدرسة الرواد الأهلية | 2018</p>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2><i class='bx bx-world'></i>اللغات</h2>
+                <ul class="skills-list">
+                    <li class="skill-item"><p>العربية (اللغة الأم)</p></li>
+                    <li class="skill-item"><p>الإنجليزية (احترافية)</p></li>
+                </ul>
+            </section>
+        </aside>
+
+        <!-- Right Column -->
+        <div class="resume-right">
+            <header class="profile-header">
+                <h1>أحمد عبدالله</h1>
+                <p class="job-title">مطوّر برمجيات كامل (Full-Stack Developer)</p>
+            </header>
+
+            <section class="section">
+                <h2><i class='bx bx-briefcase-alt-2'></i>ملخص احترافي</h2>
+                <p>مطوّر برمجيات بخبرة تتجاوز 3 سنوات في تصميم وتطوير وصيانة تطبيقات الويب باستخدام تقنيات حديثة. أسعى للاستفادة من مهاراتي في بيئة عمل محفزة للمساهمة في تحقيق أهداف الشركة وتقديم حلول تقنية مبتكرة.</p>
+            </section>
+
+            <section class="section">
+                <h2><i class='bx bx-line-chart'></i>الخبرة العملية</h2>
+                <div class="experience-item">
+                    <h3>مطوّر ويب أول</h3>
+                    <p class="company">شركة التقنية المتقدمة | الرياض | 2022 - الآن</p>
+                    <ul>
+                        <li>قيادة فريق تطوير الواجهات الأمامية لتطبيق إدارة العملاء باستخدام React.js.</li>
+                        <li>تطوير واجهات برمجة التطبيقات (APIs) RESTful باستخدام Node.js و Express.</li>
+                        <li>تحسين أداء قواعد بيانات PostgreSQL، مما أدى إلى تقليل زمن الاستجابة بنسبة 30%.</li>
+                        <li>المشاركة في جميع مراحل دورة حياة تطوير البرمجيات من التخطيط إلى النشر.</li>
+                    </ul>
+                </div>
+                <div class="experience-item">
+                    <h3>متدرب تطوير برمجيات</h3>
+                    <p class="company">حلول الويب المبتكرة | جدة | 2021 - 2022</p>
+                    <ul>
+                        <li>المساهمة في تطوير مواقع ويب للعملاء باستخدام HTML, CSS, و JavaScript.</li>
+                        <li>العمل مع نظام إدارة المحتوى WordPress لتخصيص القوالب والإضافات.</li>
+                        <li>المساعدة في اختبار التطبيقات وتصحيح الأخطاء لضمان جودة المنتج.</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section class="section">
+                <h2><i class='bx bxs-certification'></i>الشهادات والمشاريع</h2>
+                <div class="certificate-item">
+                    <h3>شهادة AWS Certified Developer</h3>
+                    <p class="company">Amazon Web Services | 2023</p>
+                </div>
+                 <div class="certificate-item">
+                    <h3>مشروع "متجري"</h3>
+                    <p>منصة تجارة إلكترونية شخصية تم بناؤها باستخدام MERN Stack (MongoDB, Express, React, Node.js). يمكن إيجاد الكود على <a href="#">GitHub</a>.</p>
+                </div>
+            </section>
+
+        </div>
+    </main>
+</body>
 </html>

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الموقع الشخصي | اسمك هنا</title>
+    <title>Personal Portfolio | Djaber NEDJAA</title>
 
     <!-- ICONS -->
     <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
@@ -11,22 +11,21 @@
     <!-- GOOGLE FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <!-- INTERNAL CSS -->
     <style>
-        /* CSS VARIABLES for easy theme editing */
         :root {
-            --primary-color: #2c3e50; /* Dark Blue */
-            --secondary-color: #3498db; /* Bright Blue */
-            --background-color: #ecf0f1; /* Light Gray */
+            --primary-color: #2c3e50; /* Dark Blue-Gray for sidebar */
+            --secondary-color: #007B8A; /* Professional Teal */
+            --background-color: #f8f9fa;
             --card-bg-color: #ffffff;
-            --text-color: #34495e; /* Dark Gray for text */
+            --text-color: #343a40;
             --header-color: #ffffff;
-            --sidebar-width: 240px;
+            --sidebar-width: 250px;
+            --border-color: #dee2e6;
         }
 
-        /* BASE STYLES */
         * {
             margin: 0;
             padding: 0;
@@ -35,7 +34,7 @@
         }
 
         body {
-            font-family: 'Cairo', sans-serif;
+            font-family: 'Poppins', sans-serif;
             background-color: var(--background-color);
             color: var(--text-color);
             font-size: 16px;
@@ -43,13 +42,13 @@
         
         h1, h2, h3 {
             color: var(--primary-color);
-            font-weight: 700;
+            font-weight: 600;
         }
         
         h2 {
             text-align: center;
-            font-size: 2rem;
-            margin-bottom: 2rem;
+            font-size: 2.2rem;
+            margin-bottom: 3rem;
             text-transform: uppercase;
             position: relative;
         }
@@ -66,38 +65,50 @@
             border-radius: 2px;
         }
 
-        /* SIDEBAR NAVIGATION */
         .sidebar {
             position: fixed;
             top: 0;
-            right: 0;
+            left: 0;
             width: var(--sidebar-width);
             height: 100vh;
             background-color: var(--primary-color);
             padding: 2rem 0;
             z-index: 1000;
-            transform: translateX(100%);
+            transform: translateX(-100%);
             transition: transform 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
         }
         .sidebar.active {
             transform: translateX(0);
         }
         
-        .sidebar .logo {
+        .profile-info {
             text-align: center;
+            padding: 0 1rem;
+            margin-bottom: 2rem;
+        }
+        .profile-info img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+        .profile-info .name {
             color: var(--header-color);
             font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
+            font-weight: 600;
         }
 
         .nav-list {
             list-style: none;
+            flex-grow: 1;
         }
         .nav-link {
             display: flex;
             align-items: center;
-            color: #bdc3c7; /* Light text on dark sidebar */
+            color: #bdc3c7;
             padding: 1rem 1.5rem;
             text-decoration: none;
             transition: background-color 0.2s, color 0.2s;
@@ -110,253 +121,320 @@
         .nav-link.active-link {
             background-color: var(--secondary-color);
             color: var(--header-color);
+            border-right: 4px solid var(--header-color);
         }
         .nav-link i {
-            margin-left: 1rem; /* for RTL */
+            margin-right: 1rem;
             font-size: 1.4rem;
+            width: 25px;
         }
 
-        /* MAIN CONTENT */
+        .sidebar-footer {
+            text-align: center;
+        }
+        .social-sidebar a {
+            color: #bdc3c7;
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            transition: color 0.2s;
+        }
+        .social-sidebar a:hover {
+            color: var(--header-color);
+        }
+
         .main-content {
-            padding: 2rem 1rem;
-            transition: margin-right 0.3s ease-in-out;
+            padding: 2rem 1.5rem;
+            transition: margin-left 0.3s ease-in-out;
         }
         .section {
-            padding: 4rem 0;
+            padding-top: 5rem;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        #home {
-             text-align: center;
-        }
-        #home h1 {
-            font-size: 3rem;
-        }
-         #home .job-title {
-            font-size: 1.5rem;
-            color: var(--secondary-color);
-            margin-bottom: 1.5rem;
-        }
-         #home .social-links a {
-            font-size: 2rem;
-            margin: 0 1rem;
-            color: var(--primary-color);
+            max-width: 960px;
+            margin: auto;
         }
 
-        /* CARDS (for experience, etc.) */
+        #home {
+             text-align: center;
+             justify-content: center;
+             min-height: 100vh;
+             display: flex;
+             flex-direction: column;
+        }
+        #home h1 { font-size: 3.5rem; margin-bottom: 0.5rem; }
+        #home .subtitle {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            min-height: 2.2rem;
+        }
+        /* Typing effect */
+        .subtitle span {
+            border-right: .1em solid var(--secondary-color);
+            animation: blink-caret .75s step-end infinite;
+        }
+        @keyframes blink-caret {
+          from, to { border-color: transparent }
+          50% { border-color: var(--secondary-color); }
+        }
+
         .card {
             background-color: var(--card-bg-color);
             border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-left: 5px solid var(--secondary-color);
         }
         .card h3 {
-            color: var(--secondary-color);
+            color: var(--primary-color);
+            margin-bottom: 0.25rem;
         }
-
-        /* SKILLS */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-        
-        /* CONTACT FORM */
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-        }
-        .contact-form input, .contact-form textarea {
-            padding: 0.8rem;
-            margin-bottom: 1rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-family: 'Cairo', sans-serif;
-        }
-         .btn {
-            background: var(--secondary-color);
-            color: var(--header-color);
-            border: none;
-            padding: 1rem;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1rem;
+        .card .meta {
+            color: #777;
             font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
         }
 
+        .skills-grid, .interests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
 
-        /* MOBILE MENU TOGGLE */
+        .language-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;}
+        .dots { display: flex; }
+        .dots .dot { width: 15px; height: 15px; border-radius: 50%; background: #ccc; margin-left: 5px; }
+        .dots .dot.filled { background: var(--secondary-color); }
+        
+        .contact-info {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        .contact-info a { text-decoration: none; color: var(--text-color); font-weight: 600; display:flex; align-items:center;}
+        .contact-info a i { color: var(--secondary-color); margin-right: 1rem; font-size: 1.8rem; }
+        .contact-info a:hover { color: var(--secondary-color); }
+
+
         .menu-toggle {
-            display: block;
-            position: fixed;
-            top: 1rem;
-            right: 1rem;
-            font-size: 2rem;
-            background: var(--primary-color);
-            color: var(--header-color);
-            border: none;
-            border-radius: 5px;
-            width: 40px;
-            height: 40px;
-            z-index: 1001;
-            cursor: pointer;
+            display: block; position: fixed; top: 1rem; left: 1rem; font-size: 2rem;
+            background: var(--primary-color); color: var(--header-color); border: none;
+            border-radius: 5px; width: 40px; height: 40px; z-index: 1001; cursor: pointer;
         }
 
-        /* DESKTOP RESPONSIVENESS */
-        @media (min-width: 768px) {
-            .menu-toggle {
-                display: none; /* Hide hamburger on desktop */
-            }
-            .sidebar {
-                transform: translateX(0); /* Make sidebar visible */
-            }
-            .main-content {
-                margin-right: var(--sidebar-width); /* Push content to the left */
-                padding: 2rem;
-            }
+        @media (min-width: 992px) {
+            .menu-toggle { display: none; }
+            .sidebar { transform: translateX(0); }
+            .main-content { margin-left: var(--sidebar-width); }
+            .contact-info { grid-template-columns: 1fr 1fr; }
         }
         
-         @media (max-width: 480px) {
-             .skills-grid {
-                grid-template-columns: 1fr;
-            }
-            h1 { font-size: 2.2rem !important; }
-            h2 { font-size: 1.6rem; }
+        @media (max-width: 480px) {
+            h1 { font-size: 2.5rem !important; }
+            h2 { font-size: 1.8rem; }
         }
-        
     </style>
 </head>
 <body>
     
-    <!-- Sidebar Navigation -->
     <nav class="sidebar" id="sidebar">
-        <h3 class="logo">موقعي</h3>
+        <div class="profile-info">
+             <img src="https://i.ibb.co/6PMLC5q/profile-pic.png" alt="Profile Picture">
+            <h3 class="name">Djaber NEDJAA</h3>
+        </div>
+
         <ul class="nav-list">
-            <li><a href="#home" class="nav-link"><i class='bx bxs-home'></i>الرئيسية</a></li>
-            <li><a href="#about" class="nav-link"><i class='bx bxs-user'></i>من أنا</a></li>
-            <li><a href="#experience" class="nav-link"><i class='bx bxs-briefcase'></i>الخبرات</a></li>
-            <li><a href="#skills" class="nav-link"><i class='bx bxs-bolt-circle'></i>المهارات</a></li>
-            <li><a href="#contact" class="nav-link"><i class='bx bxs-envelope'></i>تواصل معي</a></li>
+            <li><a href="#home" class="nav-link"><i class='bx bxs-home'></i>Home</a></li>
+            <li><a href="#about" class="nav-link"><i class='bx bxs-user-detail'></i>About Me</a></li>
+            <li><a href="#experience" class="nav-link"><i class='bx bxs-briefcase'></i>Experience</a></li>
+            <li><a href="#education" class="nav-link"><i class='bx bxs-graduation'></i>Education</a></li>
+            <li><a href="#skills" class="nav-link"><i class='bx bxs-bolt-circle'></i>Skills</a></li>
+            <li><a href="#contact" class="nav-link"><i class='bx bxs-envelope'></i>Contact</a></li>
         </ul>
+
+        <div class="sidebar-footer">
+            <div class="social-sidebar">
+                <a href="https://www.linkedin.com/in/djaber-nedjaa-88031525b/" target="_blank"><i class='bx bxl-linkedin-square'></i></a>
+            </div>
+        </div>
     </nav>
     
-    <!-- Menu Toggle Button (for mobile) -->
-    <button class="menu-toggle" id="menu-toggle">
-        <i class='bx bx-menu'></i>
-    </button>
+    <button class="menu-toggle" id="menu-toggle"><i class='bx bx-menu'></i></button>
     
-    <!-- Main Content -->
     <main class="main-content">
         <!-- Home Section -->
-        <section id="home" class="section">
-            <h1>أحمد عبدالله</h1>
-            <p class="job-title">مطوّر برمجيات ومصمم واجهات</p>
-            <p>أقوم ببناء تجارب رقمية مذهلة وسهلة الاستخدام.</p>
-             <div class="social-links">
-                <a href="#"><i class='bx bxl-linkedin-square'></i></a>
-                <a href="#"><i class='bx bxl-github'></i></a>
-                <a href="#"><i class='bx bxl-twitter'></i></a>
-            </div>
+        <section id="home">
+            <h1>Djaber NEDJAA</h1>
+            <p class="subtitle" id="job-title"><span></span></p>
         </section>
 
         <!-- About Section -->
         <section id="about" class="section">
-            <h2>من أنا</h2>
+            <h2>About Me</h2>
             <div class="card">
-                <p>مطوّر برمجيات شغوف لدي خبرة واسعة في إنشاء تطبيقات ويب حديثة وعالية الأداء. أركز دائمًا على كتابة كود نظيف، قابل للتطوير، وتقديم أفضل تجربة للمستخدم. أحب تحويل الأفكار المعقدة إلى واقع رقمي ملموس.</p>
-                <p>في وقت فراغي، أستمتع بالمساهمة في المشاريع مفتوحة المصدر واستكشاف التقنيات الجديدة.</p>
+                <p>Results-driven Production Control Analyst and AI professional with a Master's in Artificial Intelligence. Proven expertise in predictive analytics, machine learning, and workflow optimization. Strong background in data analysis and intelligent system development, with a focus on creating custom AI-based solutions to enhance operational efficiency. Seeking to apply analytical thinking and technical skills to support business performance and enable smarter decision-making across processes.</p>
             </div>
         </section>
 
         <!-- Experience Section -->
         <section id="experience" class="section">
-            <h2>الخبرات والمشاريع</h2>
+            <h2>Experience</h2>
             <div class="card">
-                <h3>مطوّر ويب أول - شركة التقنية المتقدمة</h3>
-                <p><strong>2022 - الآن</strong></p>
+                <h3>Production Control Analyst</h3>
+                <p class="meta">SPA EL FATH | Algeria | Mar 2025 - Present</p>
                 <ul>
-                    <li>قمت بتطوير وإدارة تطبيق CRM باستخدام React و Node.js.</li>
-                    <li>تحسين أداء الواجهة الخلفية، مما قلل وقت الاستجابة بنسبة 40%.</li>
-                    <li>إدارة ونشر التطبيقات على منصة AWS السحابية.</li>
+                    <li>Analyze production data and performance metrics to optimize manufacturing processes.</li>
+                    <li>Develop predictive models for production planning and resource allocation.</li>
+                    <li>Monitor KPIs and implement process improvements to increase efficiency.</li>
                 </ul>
             </div>
             <div class="card">
-                <h3>مشروع "متجري" - منصة تجارة إلكترونية</h3>
-                <p><strong>مشروع شخصي</strong></p>
+                <h3>Lecturer</h3>
+                <p class="meta">National Institute of Vocational Training (INSFP) | Batna, Algeria | Feb 2025 - Present</p>
                 <ul>
-                    <li>منصة كاملة باستخدام MERN Stack (MongoDB, Express, React, Node).</li>
-                    <li>تتضمن ميزات مثل إدارة المنتجات، عربة التسوق، والدفع الإلكتروني.</li>
+                    <li>Teaching Operating Systems with a focus on practical applications.</li>
+                    <li>Guiding students in hands-on projects and problem-solving techniques.</li>
+                    <li>Utilized modern e-learning platforms such as Moodle and Microsoft Teams.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Network Engineer Intern</h3>
+                <p class="meta">Algeria Telecom | Algeria | Mar 2024 - Apr 2024</p>
+                <ul>
+                    <li>Installed and maintained fiber optic networks and assisted in server configuration.</li>
+                    <li>Analyzed and optimized network performance analysis and optimization.</li>
+                </ul>
+            </div>
+             <div class="card">
+                <h3>Freelance Web Developer</h3>
+                <p class="meta">Remote | 2021 - 2023</p>
+                <ul>
+                    <li>Designed and developed custom websites for businesses and individuals.</li>
+                    <li>Implemented responsive, user-friendly interfaces and integrated databases, APIs, & security.</li>
                 </ul>
             </div>
         </section>
-
+        
+        <!-- Education Section -->
+        <section id="education" class="section">
+            <h2>Education</h2>
+            <div class="card">
+                <h3>Master in Artificial Intelligence and its Applications</h3>
+                <p class="meta">Si El Haouas University Center | Sep 2023 - May 2025</p>
+                <p><strong>Focus:</strong> AI in Industrial Systems, Intelligent Process Control, Data Analysis and Visualization.</p>
+            </div>
+            <div class="card">
+                <h3>Bachelor (Licence) in Computer Science</h3>
+                <p class="meta">Si El Haouas University Center | Sep 2020 - Jul 2023</p>
+                <p><strong>Thesis Project:</strong> "An Electronic Platform for Organizing Legal Services".</p>
+                <p><strong>Relevant Courses:</strong> Networks, Databases, Application Development.</p>
+            </div>
+        </section>
+        
         <!-- Skills Section -->
         <section id="skills" class="section">
-            <h2>المهارات التقنية</h2>
+            <h2>Technical Skills</h2>
             <div class="skills-grid">
-                <div class="card"><strong>الواجهات الأمامية (Frontend):</strong> HTML, CSS, JavaScript, React, Next.js</div>
-                <div class="card"><strong>الواجهات الخلفية (Backend):</strong> Node.js, Python, Django, Express</div>
-                <div class="card"><strong>قواعد البيانات:</strong> MongoDB, PostgreSQL, MySQL</div>
-                <div class="card"><strong>أدوات أخرى:</strong> Git, Docker, AWS, Figma</div>
+                <div class="card"><h3>AI & Data Science</h3><p>Predictive Analytics, Machine Learning, Data Analysis, Data Visualization, Python.</p></div>
+                <div class="card"><h3>Web Development</h3><p>HTML, CSS, JavaScript, Responsive Design, API Integration, Databases (SQL/NoSQL).</p></div>
+                <div class="card"><h3>Networking & Systems</h3><p>Network Configuration, Fiber Optics, Server Maintenance, Operating Systems.</p></div>
+                <div class="card"><h3>General</h3><p>E-learning Platforms (Moodle), Process Optimization, Workflow Automation, Project Management.</p></div>
             </div>
         </section>
 
-        <!-- Contact Section -->
+        <!-- Contact & More Section -->
         <section id="contact" class="section">
-            <h2>تواصل معي</h2>
+            <h2>Get In Touch</h2>
+             <!-- Languages -->
             <div class="card">
-                <p>هل لديك فكرة مشروع أو ترغب في العمل معًا؟ لا تتردد في مراسلتي!</p>
-                <form action="#" class="contact-form">
-                    <input type="text" name="name" placeholder="الاسم" required>
-                    <input type="email" name="email" placeholder="البريد الإلكتروني" required>
-                    <textarea name="message" rows="5" placeholder="رسالتك" required></textarea>
-                    <button type="submit" class="btn">إرسال الرسالة</button>
-                </form>
+                <h3>Languages</h3>
+                <div class="language-item"><span>Arabic</span> <div class="dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div></div></div>
+                <div class="language-item"><span>English</span> <div class="dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
+                <div class="language-item"><span>French</span> <div class="dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
             </div>
+
+            <!-- Interests -->
+             <div class="card">
+                 <h3>Interests</h3>
+                 <div class="interests-grid">
+                     <span><i class='bx bxs-chess' ></i> Strategic Gaming (Chess)</span>
+                     <span><i class='bx bx-search-alt' ></i> Technology Research</span>
+                     <span><i class='bx bx-conversation' ></i> Cross-Cultural Communication</span>
+                 </div>
+            </div>
+            
+            <!-- Contact Info -->
+            <div class="card">
+                 <h3>Contact Information</h3>
+                 <div class="contact-info">
+                     <a href="mailto:djabernedjaa@outlook.com"><i class='bx bxs-envelope'></i>djabernedjaa@outlook.com</a>
+                     <a href="tel:+213697073988"><i class='bx bxs-phone'></i>+213697073988</a>
+                     <a href="#"><i class='bx bxs-map'></i>Algeria</a>
+                     <a href="https://www.linkedin.com/in/djaber-nedjaa-88031525b/" target="_blank"><i class='bx bxl-linkedin-square'></i>LinkedIn Profile</a>
+                 </div>
+            </div>
+
         </section>
     </main>
 
-    <!-- JAVASCRIPT for interactivity -->
     <script>
-        // --- Sidebar Toggle Logic ---
         const menuToggle = document.getElementById('menu-toggle');
         const sidebar = document.getElementById('sidebar');
-        
-        menuToggle.addEventListener('click', () => {
-            sidebar.classList.toggle('active');
-        });
-        
-        // --- Active Link highlighting on Scroll ---
-        const sections = document.querySelectorAll('.section');
+        menuToggle.addEventListener('click', () => sidebar.classList.toggle('active'));
+
         const navLinks = document.querySelectorAll('.nav-link');
-        
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth < 992) { sidebar.classList.remove('active'); }
+            });
+        });
+
+        const sections = document.querySelectorAll('.section');
         window.addEventListener('scroll', () => {
             let current = '';
             sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if(pageYOffset >= sectionTop - 60) { // 60 is an offset
-                    current = section.getAttribute('id');
-                }
+                if (pageYOffset >= section.offsetTop - 100) { current = section.getAttribute('id'); }
             });
-            
             navLinks.forEach(link => {
                 link.classList.remove('active-link');
-                if(link.getAttribute('href').includes(current)){
-                    link.classList.add('active-link');
-                }
+                if (link.getAttribute('href').includes(current)) { link.classList.add('active-link'); }
             });
+        });
 
-            // Close sidebar on mobile when a link is clicked
-             if (sidebar.classList.contains('active')) {
-                link.addEventListener('click', () => {
-                     sidebar.classList.remove('active');
-                });
+        // Typing effect for subtitle
+        const titles = ["Production Control Analyst", "AI & Data Science Professional"];
+        let titleIndex = 0;
+        let charIndex = 0;
+        const speed = 100;
+        const delay = 2000;
+        const subtitleEl = document.getElementById('job-title').querySelector('span');
+
+        function typeWriter() {
+            if (charIndex < titles[titleIndex].length) {
+                subtitleEl.innerHTML += titles[titleIndex].charAt(charIndex);
+                charIndex++;
+                setTimeout(typeWriter, speed);
+            } else {
+                setTimeout(eraseText, delay);
             }
+        }
+
+        function eraseText() {
+            if (charIndex > 0) {
+                subtitleEl.innerHTML = titles[titleIndex].substring(0, charIndex - 1);
+                charIndex--;
+                setTimeout(eraseText, speed / 2);
+            } else {
+                titleIndex = (titleIndex + 1) % titles.length;
+                setTimeout(typeWriter, speed);
+            }
+        }
+        
+        document.addEventListener("DOMContentLoaded", function() {
+            setTimeout(typeWriter, speed);
         });
 
     </script>
